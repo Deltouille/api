@@ -1,0 +1,18 @@
+version: '3.7'
+
+services:
+  database:
+    image: mariadb:latest
+    container_name: lingolink-api-database
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: lingolink
+      MYSQL_USER: lingolink
+      MYSQL_PASSWORD: lingolink
+    ports:
+      - '3366:3306'
+    volumes:
+      - data:/var/lib/mysql
+
+volumes:
+  data:
