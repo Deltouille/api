@@ -2,10 +2,11 @@ import { DateTime } from 'luxon'
 import { withAuthFinder } from '@adonisjs/auth'
 import hash from '@adonisjs/core/services/hash'
 import { compose } from '@adonisjs/core/helpers'
-import { BaseModel, column, hasOne } from '@adonisjs/lucid/orm'
+import { BaseModel, beforeCreate, column, hasOne } from '@adonisjs/lucid/orm'
 import { DbAccessTokensProvider } from '@adonisjs/auth/access_tokens'
 import Profile from '#models/profile'
 import type { HasOne } from '@adonisjs/lucid/types/relations'
+import { v4 as uuidv4 } from 'uuid'
 
 const AuthFinder = withAuthFinder(() => hash.use('scrypt'), {
   uids: ['email'],
@@ -21,8 +22,11 @@ export default class User extends compose(BaseModel, AuthFinder) {
     tokenSecretLength: 40,
   })
 
-  @column({ isPrimary: true })
+  @column({ isPrimary: true, serializeAs: null })
   declare id: number
+
+  @column()
+  declare uuid: string
 
   @column()
   declare email: string
@@ -68,4 +72,9 @@ export default class User extends compose(BaseModel, AuthFinder) {
 
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   declare updatedAt: DateTime | null
+
+  @beforeCreate()
+  static assignUuid(user: User) {
+    user.uuid = uuidv4()
+  }
 }

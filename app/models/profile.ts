@@ -1,13 +1,17 @@
 import { DateTime } from 'luxon'
-import { BaseModel, column, hasMany, hasOne, manyToMany } from '@adonisjs/lucid/orm'
+import { v4 as uuidv4 } from 'uuid'
+import { BaseModel, beforeCreate, column, hasMany, hasOne, manyToMany } from '@adonisjs/lucid/orm'
 import Location from '#models/location'
 import type { HasMany, HasOne, ManyToMany } from '@adonisjs/lucid/types/relations'
 import ProfileLanguage from '#models/profile_language'
 import Language from '#models/language'
 
 export default class Profile extends BaseModel {
-  @column({ isPrimary: true })
+  @column({ isPrimary: true, serializeAs: null })
   declare id: number
+
+  @column()
+  declare uuid: string
 
   @column()
   declare firstName: string
@@ -46,4 +50,9 @@ export default class Profile extends BaseModel {
 
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   declare updatedAt: DateTime
+
+  @beforeCreate()
+  static assignUuid(profile: Profile) {
+    profile.uuid = uuidv4()
+  }
 }
