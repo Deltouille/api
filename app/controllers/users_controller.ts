@@ -1,7 +1,13 @@
 import type { HttpContext } from '@adonisjs/core/http'
 import User from '#models/user'
+import { inject } from '@adonisjs/core'
+import { UsersFilterService } from '#services/filters/users_filter_service'
+import logger from '@adonisjs/core/services/logger'
 
+@inject()
 export default class UsersController {
+  constructor(private usersFilterService: UsersFilterService) {}
+
   /**
    * Display a list of resource
    */
@@ -20,55 +26,63 @@ export default class UsersController {
         // Apply the filter based on the key and value
         switch (key) {
           case 'nativeLanguage':
-            query = query.where('nativeLanguage', value)
+            try {
+              await this.usersFilterService.filterByNativeLanguage(value, query)
+            } catch (error) {
+              logger.warn(`Invalid nativeLanguage filter format: ${value}`)
+            }
             break
           case 'targetLanguage':
-            query = query.where('targetLanguage', value)
+            try {
+              await this.usersFilterService.filterByTargetLanguage(value, query)
+            } catch (error) {
+              logger.warn(`Invalid targetLanguage filter format: ${value}`)
+            }
             break
           case 'level':
-            // Example for range filter
-            const levelRange = value.split(',')
-            query = query.whereBetween('level', levelRange)
+            try {
+              await this.usersFilterService.filterByLevel(value, query)
+            } catch (error) {
+              logger.warn(`Invalid level filter format: ${value}`)
+            }
             break
           case 'ageRange':
             try {
-              const [minAge, maxAge] = value.map(Number)
-
-              const minDateOfBirth = new Date()
-              minDateOfBirth.setFullYear(minDateOfBirth.getFullYear() - maxAge - 1)
-
-              const maxDateOfBirth = new Date()
-              maxDateOfBirth.setFullYear(maxDateOfBirth.getFullYear() - minAge)
-
-              query = query.whereHas('profile', (builder) => {
-                builder.whereBetween('birthDate', [
-                  minDateOfBirth.toISOString(),
-                  maxDateOfBirth.toISOString(),
-                ])
-              })
+              await this.usersFilterService.filterByAge(value, query)
             } catch (error) {
-              console.warn(`Invalid ageRange filter format: ${value}`)
+              logger.warn(`Invalid ageRange filter format: ${value}`)
             }
             break
           case 'region':
-            query = query.whereLike('region', `%${value}%`)
-            break
-          case 'city':
-            query = query.whereLike('city', `%${value}%`)
-            break
-          case 'gender':
-            query = query.whereHas('profile', (builder) => {
-              builder.where('gender', value)
-            })
-            break
-          case 'newUsers':
-            if (value === 'true') {
-              query = query.where('createdAt', '>', new Date(Date.now() - 7 * 24 * 60 * 60 * 1000))
+            try {
+              await this.usersFilterService.filterByRegion(value, query)
+            } catch (error) {
+              logger.warn(`Invalid region filter format: ${value}`)
             }
             break
-          // Add more cases for other filters
+          case 'city':
+            try {
+              await this.usersFilterService.filterByCity(value, query)
+            } catch (error) {
+              logger.warn(`Invalid city filter format: ${value}`)
+            }
+            break
+          case 'gender':
+            try {
+              await this.usersFilterService.filterByGender(value, query)
+            } catch (error) {
+              logger.warn(`Invalid newUsers filter format: ${value}`)
+            }
+            break
+          case 'newUsers':
+            try {
+              await this.usersFilterService.filterNewUsers(value, query)
+            } catch (error) {
+              logger.warn(`Invalid newUsers filter format: ${value}`)
+            }
+            break
           default:
-            console.warn(`Unknown filter: ${key}`)
+            logger.warn(`Unknown filter: ${key}`)
             break
         }
       }
