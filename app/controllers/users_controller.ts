@@ -66,7 +66,7 @@ export default class UsersController {
             try {
               await this.usersFilterService.filterByCity(value, query)
             } catch (error) {
-              logger.warn(`Invalid city filter format: ${value}`)
+              logger.warn({ message: `Invalid city filter format: ${value}`, error: error.message })
             }
             break
           case 'gender':
