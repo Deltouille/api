@@ -1,6 +1,6 @@
 import User from '#models/user'
 import { ModelQueryBuilderContract } from '@adonisjs/lucid/types/model'
-import { GenderEnum } from '../../constants/gender_enum.js'
+import { GenderEnum } from '#constants/gender_enum'
 import logger from '@adonisjs/core/services/logger'
 
 export class UsersFilterService {
