@@ -32,8 +32,20 @@ export default class UsersController {
             break
           case 'ageRange':
             try {
-              const ageRange = value.split(',')
-              query = query.whereBetween('age', ageRange)
+              const [minAge, maxAge] = value.map(Number)
+
+              const minDateOfBirth = new Date()
+              minDateOfBirth.setFullYear(minDateOfBirth.getFullYear() - maxAge - 1)
+
+              const maxDateOfBirth = new Date()
+              maxDateOfBirth.setFullYear(maxDateOfBirth.getFullYear() - minAge)
+
+              query = query.whereHas('profile', (builder) => {
+                builder.whereBetween('birthDate', [
+                  minDateOfBirth.toISOString(),
+                  maxDateOfBirth.toISOString(),
+                ])
+              })
             } catch (error) {
               console.warn(`Invalid ageRange filter format: ${value}`)
             }
