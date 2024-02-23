@@ -13,7 +13,9 @@ export default class UsersController {
    */
   async index({ request, response }: HttpContext) {
     // Create an empty query object
-    let query = User.query().preload('profile')
+    let query = User.query().preload('profile', (profileQuery) => {
+      profileQuery.preload('location')
+    })
 
     // Check if the request has filters
     const filters = request.qs()

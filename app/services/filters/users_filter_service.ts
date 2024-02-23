@@ -54,7 +54,12 @@ export class UsersFilterService {
   }
 
   async filterByRegion(value: any, query: ModelQueryBuilderContract<any, User>) {
-    return query.whereLike('region', `%${value}%`)
+    return query.whereHas('profile', (profileQuery) => {
+      // builder.where('gender', value)
+      profileQuery.whereHas('location', (locationQuery) => {
+        locationQuery.where('country', value)
+      })
+    })
   }
 
   async filterByCity(value: any, query: ModelQueryBuilderContract<any, User>) {
