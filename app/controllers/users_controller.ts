@@ -91,9 +91,8 @@ export default class UsersController {
     }
 
     // Execute the query and filter users based on matching profiles (if applicable)
-    const users = await query.exec()
+    const users: User[] = await query.exec()
 
-    // Log the final SQL query
     return response.ok(users)
   }
 

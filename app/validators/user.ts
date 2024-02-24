@@ -8,8 +8,8 @@ export const createUserValidator = vine.compile(
     email: vine.string().email(),
     username: vine
       .string()
-      .alpha({ allowSpaces: false, allowUnderscores: true, allowDashes: true }),
+      .alphaNumeric({ allowSpaces: false, allowUnderscores: true, allowDashes: true }),
     password: vine.string().minLength(8).maxLength(64).confirmed(),
     rememberMeToken: vine.string().optional(),
-  }),
+  })
 )

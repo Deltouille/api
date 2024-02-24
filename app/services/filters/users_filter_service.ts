@@ -2,9 +2,13 @@ import User from '#models/user'
 import { ModelQueryBuilderContract } from '@adonisjs/lucid/types/model'
 import { GenderEnum } from '#constants/gender_enum'
 import logger from '@adonisjs/core/services/logger'
-import Env from '#start/env'
+import { LocationService } from '#services/location_service'
+import { inject } from '@adonisjs/core'
 
+@inject()
 export class UsersFilterService {
+  constructor(private locationService: LocationService) {}
+
   async filterByAge(ageRange: any, query: ModelQueryBuilderContract<any, User>) {
     const [minAge, maxAge] = ageRange.map(Number)
 
@@ -63,28 +67,36 @@ export class UsersFilterService {
   }
 
   async filterByCity(city: string, query: ModelQueryBuilderContract<any, User>) {
-    // Use Google Maps Geocoding API to get city coordinates
-    const response = await fetch(
-      `https://maps.googleapis.com/maps/api/geocode/json?address=${city}&key=${Env.get('GOOGLE_MAPS_API_KEY')}`
-    )
-    const data: any = await response.json()
+    try {
+      const cityCoordinates: any = await this.locationService.getCityFromCoordinates(city)
 
-    if (data.status === 'OK') {
-      const { lat, lng } = data.results[0].geometry.location
+      // Validate city coordinates are available
+      if (!cityCoordinates) {
+        logger.warn(`Invalid city: ${city}`)
+        throw new Error(`Invalid city ${city}`)
+      }
 
-      // Filter users based on proximity to the city coordinates
-      return query.whereHas('profile', (profileQuery) => {
-        const earthRadius = 6371e3 // Earth radius in meters
-        profileQuery
-          .selectRaw(
-            `acos(sin(radians(?)) * sin(radians(location.latitude)) + cos(radians(?)) * cos(radians(location.latitude)) * cos(radians(location.longitude) - radians(?))) * ? as distance`,
-            [lat, lat, lng, earthRadius]
+      // Calculate query radius in meters based on 10km distance
+      const queryRadius: number = await this.locationService.calculateQueryRadius(10)
+
+      // Build the MariaDB query using ST_Distance
+      return await query.whereHas('profile', (profileQuery) => {
+        profileQuery.whereHas('location', (locationQuery: any) => {
+          // Assuming location contains latitude and longitude fields
+          locationQuery.whereRaw(
+            `
+          6371 * acos(cos(radians(:latitude)) * cos(radians(latitude)) * cos(radians(longitude) - radians(:longitude)) + sin(radians(:latitude)) * sin(radians(latitude))) <= :radius
+        `,
+            {
+              latitude: cityCoordinates.latitude,
+              longitude: cityCoordinates.longitude,
+              radius: queryRadius,
+            }
           )
-          .orderBy('distance', 'asc')
-          .whereRaw(`distance < ?`, [10000]) // Filter within 10km radius (adjust as needed)
+        })
       })
-    } else {
-      logger.warn(`Error fetching coordinates for city: ${city}`)
+    } catch (error) {
+      logger.error(`Error searching users by city: ${city}`, error.message)
     }
   }
 }
