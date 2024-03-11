@@ -2,17 +2,24 @@ import type { HttpContext } from '@adonisjs/core/http'
 import { minioClient } from '#config/drive'
 import Env from '#start/env'
 import logger from '@adonisjs/core/services/logger'
+import User from '#models/user'
 
 export default class UploadsController {
-  async uploadProfilePicture({ response }: HttpContext) {
+  async uploadProfilePicture({ request, response, auth }: HttpContext) {
     // File to upload
-    const sourceFile: string = 'uploads/img.png'
+    const imageFile = request.file('profile_picture')
+
+    // Validate the file (size, type, etc.)
+    if (!imageFile) {
+      return response.badRequest({ message: 'No image file uploaded' })
+    }
+
+    // Generate a unique filename with an extension using a secure method (e.g., UUID or cryptographic hash)
+    const uniqueFilename = crypto.randomUUID() + '.' + imageFile.extname
+    const filePath = imageFile.tmpPath
 
     // Destination bucket
     const bucket = Env.get('S3_BUCKET') || ''
-
-    // Destination object name
-    const destinationObject: string = 'img.png'
 
     // Check if the bucket exists
     // If it doesn't, create it
@@ -26,39 +33,55 @@ export default class UploadsController {
 
     // Set the object metadata
     const metaData = {
-      'Content-Type': 'multipart/form-data',
+      'Content-Type': imageFile.headers['content-type'] || 'image/png',
     }
 
-    // Upload the file with fPutObject
-    // If an object with the same name exists,
-    // it is updated with new data
-    await minioClient.fPutObject(bucket, destinationObject, sourceFile, metaData)
+    const uploadedProfilePicture = await minioClient.fPutObject(
+      bucket,
+      uniqueFilename,
+      filePath || '',
+      metaData
+    )
 
-    logger.info(`File ${sourceFile} uploaded as object ${destinationObject} in bucket ${bucket}`)
+    // Set the user's profile picture to the uploaded file
+    const currentUser = auth.user as User
+    currentUser.image = uniqueFilename
+    await currentUser.save()
 
     return response.created({
-      message: 'File uploaded successfully',
       status: 201,
+      message: 'File uploaded successfully',
       file: {
-        name: destinationObject,
-        bucket: bucket,
+        etag: uploadedProfilePicture.etag,
+        versionId: uploadedProfilePicture.versionId,
+        name: uniqueFilename,
+        filePath: filePath,
       },
     })
   }
 
-  async getProfilePicture({ response }: HttpContext) {
-    const objectName = 'img.png'
-    const filePath = 'uploads/img.png'
+  async getProfilePicture({ response, auth }: HttpContext) {
+    // Retrieve user data, including profilePictureFilename
+    const currentUser = auth.user as User
+    const objectName = currentUser.image || ''
 
-    await minioClient.fGetObject(Env.get('S3_BUCKET'), objectName, filePath)
+    // Check if the object exists in the bucket
+    const objectStat = await minioClient.statObject(Env.get('S3_BUCKET'), objectName)
+    if (!objectStat) {
+      return response.notFound({ message: 'Profile picture not found' })
+    }
+
+    // Generate a pre-signed URL for temporary access
+    const presignedUrl = await minioClient.presignedGetObject(
+      Env.get('S3_BUCKET'),
+      objectName,
+      // Set a reasonable expiration time (e.g., 60 seconds)
+      60
+    )
 
     return response.ok({
-      message: 'File downloaded successfully',
-      status: 201,
-      file: {
-        name: objectName,
-        filePath: filePath,
-      },
+      message: 'Profile picture retrieved successfully',
+      url: presignedUrl,
     })
   }
 }
