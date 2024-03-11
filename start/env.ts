@@ -25,6 +25,13 @@ export default await Env.create(new URL('../', import.meta.url), {
   */
   SESSION_DRIVER: Env.schema.enum(['cookie', 'memory'] as const),
 
+  S3_KEY: Env.schema.string(),
+  S3_SECRET: Env.schema.string(),
+  S3_BUCKET: Env.schema.string(),
+  S3_REGION: Env.schema.string.optional(),
+  S3_ENDPOINT_URL: Env.schema.string(),
+  S3_ENDPOINT_PORT: Env.schema.number(),
+
   /*
   |----------------------------------------------------------
   | Variables for configuring database connection
