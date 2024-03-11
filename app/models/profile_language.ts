@@ -6,7 +6,7 @@ import Language from '#models/language'
 import ProficiencyLevel from '#models/proficiency_level'
 
 export default class ProfileLanguage extends BaseModel {
-  @column({ isPrimary: true })
+  @column({ isPrimary: true, serializeAs: null })
   declare id: number
 
   @column({

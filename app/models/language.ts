@@ -4,7 +4,7 @@ import type { HasOne } from '@adonisjs/lucid/types/relations'
 import ProficiencyLevel from '#models/proficiency_level'
 
 export default class Language extends BaseModel {
-  @column({ isPrimary: true })
+  @column({ isPrimary: true, serializeAs: null })
   declare id: number
 
   @column()

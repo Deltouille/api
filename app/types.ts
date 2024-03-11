@@ -1,6 +1,6 @@
-import { ProficiencyLevelEnum } from './constants/proficiency_level_enum.js'
-import { GenderEnum } from './constants/gender_enum.js'
-import { UserRolesEnum } from './constants/user_roles_enum.js'
+import { ProficiencyLevelEnum } from '#constants/proficiency_level_enum'
+import { GenderEnum } from '#constants/gender_enum'
+import { UserRolesEnum } from '#constants/user_roles_enum'
 
 export interface User {
   id: string
