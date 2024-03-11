@@ -28,63 +28,74 @@ export default class UsersController {
         // Apply the filter based on the key and value
         switch (key) {
           case 'nativeLanguage':
-            // try {
-            const filteredUsers = await this.usersFilterService.filterByNativeLanguage(value)
-            return response.ok(filteredUsers)
-          // } catch (error) {
-          //   logger.warn(`Invalid nativeLanguage filter format: ${value}`)
-          // }
+            try {
+              const filteredUsers = await this.usersFilterService.filterByNativeLanguage(value)
+              return response.ok(filteredUsers)
+            } catch (error) {
+              logger.error(`Invalid nativeLanguage filter format: ${value}`)
+            }
+            break
           case 'targetLanguage':
             try {
-              await this.usersFilterService.filterByTargetLanguage(value, query)
+              const filteredUsers = await this.usersFilterService.filterByTargetLanguage(value)
+              return response.ok(filteredUsers)
             } catch (error) {
-              logger.warn(`Invalid targetLanguage filter format: ${value}`)
+              logger.error(`Invalid targetLanguage filter format: ${value}`)
             }
             break
           case 'level':
             try {
-              await this.usersFilterService.filterByLevel(value, query)
+              const filteredUsers = await this.usersFilterService.filterByLevel(value, query)
+              return response.ok(filteredUsers)
             } catch (error) {
-              logger.warn(`Invalid level filter format: ${value}`)
+              logger.error(`Invalid level filter format: ${value}`)
             }
             break
           case 'ageRange':
             try {
-              await this.usersFilterService.filterByAge(value, query)
+              const filteredUsers = await this.usersFilterService.filterByAge(value, query)
+              return response.ok(filteredUsers)
             } catch (error) {
-              logger.warn(`Invalid ageRange filter format: ${value}`)
+              logger.error(`Invalid ageRange filter format: ${value}`)
             }
             break
           case 'region':
             try {
-              await this.usersFilterService.filterByRegion(value, query)
+              const filteredUsers = await this.usersFilterService.filterByRegion(value, query)
+              return response.ok(filteredUsers)
             } catch (error) {
-              logger.warn(`Invalid region filter format: ${value}`)
+              logger.error(`Invalid region filter format: ${value}`)
             }
             break
           case 'city':
             try {
-              await this.usersFilterService.filterByCity(value, query)
+              const filteredUsers = await this.usersFilterService.filterByCity(value, query)
+              return response.ok(filteredUsers)
             } catch (error) {
-              logger.warn({ message: `Invalid city filter format: ${value}`, error: error.message })
+              logger.error({
+                message: `Invalid city filter format: ${value}`,
+                error: error.message,
+              })
             }
             break
           case 'gender':
             try {
-              await this.usersFilterService.filterByGender(value, query)
+              const filteredUsers = await this.usersFilterService.filterByGender(value, query)
+              return response.ok(filteredUsers)
             } catch (error) {
-              logger.warn(`Invalid newUsers filter format: ${value}`)
+              logger.error(`Invalid newUsers filter format: ${value}`)
             }
             break
           case 'newUsers':
             try {
-              await this.usersFilterService.filterNewUsers(value, query)
+              const filteredUsers = await this.usersFilterService.filterNewUsers(value, query)
+              return response.ok(filteredUsers)
             } catch (error) {
-              logger.warn(`Invalid newUsers filter format: ${value}`)
+              logger.error(`Invalid newUsers filter format: ${value}`)
             }
             break
           default:
-            logger.warn(`Unknown filter: ${key}`)
+            logger.error(`Unknown filter: ${key}`)
             break
         }
       }

@@ -48,7 +48,7 @@ export class UsersFilterService {
   async filterByNativeLanguage(nativeLanguageName: string) {
     logger.debug('Filtering by native language', nativeLanguageName)
 
-    const users = await User.query()
+    return await User.query()
       .whereHas('profile', (profileBuilder) => {
         profileBuilder
           .whereHas('profileLanguages', (languageBuilder) => {
@@ -60,18 +60,31 @@ export class UsersFilterService {
       })
       .preload('profile', (profileQuery) => {
         profileQuery.preload('profileLanguages', (languageQuery) => {
-          languageQuery.preload('language')
+          languageQuery.preload('language').preload('level')
         })
       })
       .exec()
-
-    logger.info(users)
-
-    return users
   }
 
-  async filterByTargetLanguage(targetLanguage: any, query: ModelQueryBuilderContract<any, User>) {
-    return query.where('targetLanguage', targetLanguage)
+  async filterByTargetLanguage(targetLanguageName: any) {
+    logger.debug('Filtering by native language', targetLanguageName)
+
+    return await User.query()
+      .whereHas('profile', (profileBuilder) => {
+        profileBuilder
+          .whereHas('profileLanguages', (languageBuilder) => {
+            languageBuilder.where('isNative', 0).whereHas('language', (languageQuery: any) => {
+              languageQuery.where('name', targetLanguageName)
+            })
+          })
+          .preload('profileLanguages')
+      })
+      .preload('profile', (profileQuery) => {
+        profileQuery.preload('profileLanguages', (languageQuery: any) => {
+          languageQuery.preload('language').preload('level')
+        })
+      })
+      .exec()
   }
 
   async filterByLevel(level: any, query: ModelQueryBuilderContract<any, User>) {
