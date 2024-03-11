@@ -12,7 +12,7 @@ export default class ProfileLanguagesController {
     // const { languageId, levelId, isNative } = request.body()
 
     const profileLanguages: ProfileLanguage[] = await ProfileLanguage.createMany(
-      request.body().languages,
+      request.body().languages
     )
 
     return response.created({ profileLanguages })
@@ -30,9 +30,7 @@ export default class ProfileLanguagesController {
     return response.ok({ languages: userLanguages })
   }
 
-  async update({}: HttpContext) {
-  }
+  async update({}: HttpContext) {}
 
-  async delete({}: HttpContext) {
-  }
+  async delete({}: HttpContext) {}
 }
