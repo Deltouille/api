@@ -28,12 +28,12 @@ export default class UsersController {
         // Apply the filter based on the key and value
         switch (key) {
           case 'nativeLanguage':
-            try {
-              await this.usersFilterService.filterByNativeLanguage(value, query)
-            } catch (error) {
-              logger.warn(`Invalid nativeLanguage filter format: ${value}`)
-            }
-            break
+            // try {
+            const filteredUsers = await this.usersFilterService.filterByNativeLanguage(value)
+            return response.ok(filteredUsers)
+          // } catch (error) {
+          //   logger.warn(`Invalid nativeLanguage filter format: ${value}`)
+          // }
           case 'targetLanguage':
             try {
               await this.usersFilterService.filterByTargetLanguage(value, query)

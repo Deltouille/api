@@ -45,8 +45,29 @@ export class UsersFilterService {
     })
   }
 
-  async filterByNativeLanguage(nativeLanguage: any, query: ModelQueryBuilderContract<any, User>) {
-    return query.where('nativeLanguage', nativeLanguage)
+  async filterByNativeLanguage(nativeLanguageName: string) {
+    logger.debug('Filtering by native language', nativeLanguageName)
+
+    const users = await User.query()
+      .whereHas('profile', (profileBuilder) => {
+        profileBuilder
+          .whereHas('profileLanguages', (languageBuilder) => {
+            languageBuilder.where('isNative', 1).whereHas('language', (languageQuery: any) => {
+              languageQuery.where('name', nativeLanguageName) // Replace argumentName with your argument variable name
+            })
+          })
+          .preload('profileLanguages')
+      })
+      .preload('profile', (profileQuery) => {
+        profileQuery.preload('profileLanguages', (languageQuery) => {
+          languageQuery.preload('language')
+        })
+      })
+      .exec()
+
+    logger.info(users)
+
+    return users
   }
 
   async filterByTargetLanguage(targetLanguage: any, query: ModelQueryBuilderContract<any, User>) {
