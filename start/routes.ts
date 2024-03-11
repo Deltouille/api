@@ -14,6 +14,7 @@ import profileRoutes from '#start/routes/profile'
 import recommendationsRoutes from '#start/routes/recommendations'
 import languagesRoutes from '#start/routes/languages'
 import countryRoutes from '#start/routes/countries'
+import uploadRoutes from '#start/routes/uploads'
 
 router.get('/', async () => {
   return {
@@ -29,5 +30,6 @@ router
     recommendationsRoutes()
     languagesRoutes()
     countryRoutes()
+    uploadRoutes()
   })
   .prefix('/api/v1')
