@@ -4,8 +4,7 @@ import { inject } from '@adonisjs/core'
 
 @inject()
 export default class CountriesController {
-  constructor(private countryService: CountryService) {
-  }
+  constructor(private countryService: CountryService) {}
 
   async getCountries({}: HttpContext) {
     return this.countryService.getCountries()
