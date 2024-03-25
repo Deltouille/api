@@ -44,7 +44,7 @@ export default class AuthController {
       const token = await User.accessTokens.create(user!)
 
       return response.ok({
-        token: token,
+        token,
         success: true,
         status: 200,
         message: `User ${user!.uuid} successfully logged-in.`,
