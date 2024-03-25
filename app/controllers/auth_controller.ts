@@ -11,11 +11,20 @@ export default class AuthController {
       const payload = await createUserValidator.validate(data)
       const user: User = await User.create(payload)
 
-      return response.created(user)
+      return response.created({
+        user: user,
+        success: true,
+        status: 201,
+        message: `User ${user.uuid} created successfully.`,
+      })
     } catch (error) {
       if (error instanceof errors.E_VALIDATION_ERROR) {
         logger.error(error.messages)
-        return response.badRequest()
+        return response.badRequest({
+          success: false,
+          status: 400,
+          errors: error.messages,
+        })
       }
     }
   }
@@ -34,13 +43,19 @@ export default class AuthController {
       await hash.verify(user!.password, password)
       const token = await User.accessTokens.create(user!)
 
-      return response.ok(token)
+      return response.ok({
+        token: token,
+        success: true,
+        status: 200,
+        message: `User ${user!.uuid} successfully logged-in.`,
+      })
     } catch (error) {
       logger.error(error)
       return response.badRequest({
         error: {
-          message: 'User with provided credentials could not be found',
-          context: error,
+          success: false,
+          message: 'Invalid credentials.',
+          error: error.message,
           status: 400,
         },
       })
