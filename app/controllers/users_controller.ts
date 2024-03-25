@@ -149,7 +149,7 @@ export default class UsersController {
     try {
       const user = await User.findByOrFail('uuid', params.uuid)
       await user.delete()
-      return response.noContent({
+      return response.ok({
         success: true,
         status: 204,
         message: `User ${user.uuid} deleted successfully`,
@@ -159,7 +159,7 @@ export default class UsersController {
         return response.notFound({
           success: false,
           status: 404,
-          message: `User ${user.uuid} not found`,
+          message: `User ${params.uuid} not found`,
         })
       }
     }
