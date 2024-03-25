@@ -139,10 +139,29 @@ export default class UsersController {
   /**
    * Handle form submission for the edit action
    */
+
   // async update({ params, request }: HttpContext) {}
 
   /**
    * Delete record
    */
-  // async destroy({ params }: HttpContext) {}
+  async destroy({ params, response }: HttpContext) {
+    try {
+      const user = await User.findByOrFail('uuid', params.uuid)
+      await user.delete()
+      return response.noContent({
+        success: true,
+        status: 204,
+        message: `User ${user.uuid} deleted successfully`,
+      })
+    } catch (error) {
+      if (error instanceof Error) {
+        return response.notFound({
+          success: false,
+          status: 404,
+          message: `User ${user.uuid} not found`,
+        })
+      }
+    }
+  }
 }

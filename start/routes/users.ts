@@ -7,6 +7,7 @@ export default function usersRoutes() {
     .group(() => {
       router.get('', [UsersController, 'index'])
       router.get('/:uuid', [UsersController, 'show'])
+      router.delete('/:uuid', [UsersController, 'destroy'])
       router.get('/find/:username', [UsersController, 'findByUsername'])
     })
     .prefix('/users')
