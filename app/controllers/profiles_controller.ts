@@ -29,13 +29,17 @@ export default class ProfilesController {
         await user?.related('profile').save(profile)
       }
 
-      return response.created(profile)
-    } catch (error) {
+      return response.created({ profile: profile, success: true })
+    } catch (errors) {
       logger.error({
-        error: error,
+        errors: errors,
         message: 'Could not created profile',
       })
-      return response.unprocessableEntity(profile)
+      return response.unprocessableEntity({
+        success: false,
+        errors: errors,
+        message: errors.message,
+      })
     }
   }
 }
