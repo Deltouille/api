@@ -2,7 +2,8 @@ import Env from '#start/env'
 
 export class CountryService {
   async getCountries() {
-    const response = await fetch(`${Env.get('REST_COUNTRIES_URL')}/all?fields=name`)
+    const url = Env.get('REST_COUNTRIES_URL') || 'http://localhost:3333/api/v1'
+    const response = await fetch(`${url}/all?fields=name`)
     const data = await response.json()
 
     if (Array.isArray(data)) {
@@ -17,7 +18,7 @@ export class CountryService {
 
     data.forEach((countries): void => {
       if (countries) {
-        Object.values(countries).forEach((country): void => {
+        Object.values(countries).forEach((country: any): void => {
           countrySet.add(country?.common)
         })
       }

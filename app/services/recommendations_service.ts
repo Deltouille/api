@@ -1,5 +1,5 @@
 import { Recommendation, User } from '../types.js'
-import { UserService } from '#services/user_service'
+import { UserService } from '#services/users_service'
 import { inject } from '@adonisjs/core'
 
 @inject()

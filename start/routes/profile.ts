@@ -10,6 +10,7 @@ export default function profileRoutes() {
     .group(() => {
       router.get('/', [ProfilesController, 'index'])
       router.post('/', [ProfilesController, 'create'])
+      router.delete('/:uuid', [ProfilesController, 'delete'])
       router.post('/location', [LocationsController, 'create'])
       router.patch('/location', [LocationsController, 'update'])
 

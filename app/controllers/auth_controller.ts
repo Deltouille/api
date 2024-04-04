@@ -21,8 +21,8 @@ export default class AuthController {
       if (error instanceof errors.E_VALIDATION_ERROR) {
         logger.error(error.messages)
         return response.badRequest({
-          success: false,
           status: 400,
+          success: false,
           errors: error.messages,
         })
       }
@@ -40,25 +40,36 @@ export default class AuthController {
         response.abort('Invalid credentials')
       }
 
-      await hash.verify(user!.password, password)
-      const token = await User.accessTokens.create(user!)
+      const isValidPassword = await hash.verify(user!.password, password)
 
-      return response.ok({
-        token,
-        success: true,
-        status: 200,
-        message: `User ${user!.uuid} successfully logged-in.`,
-      })
-    } catch (error) {
-      logger.error(error)
-      return response.badRequest({
-        error: {
+      if (isValidPassword) {
+        const token = await User.accessTokens.create(user!)
+        logger.debug(`User ${user!.uuid} successfully logged-in.`)
+        return response.ok({
+          status: 200,
+          success: true,
+          message: `User ${user!.uuid} successfully logged-in.`,
+          token,
+        })
+      } else {
+        return response.badRequest({
+          status: 200,
           success: false,
-          message: 'Invalid credentials.',
-          error: error.message,
-          status: 400,
-        },
-      })
+          message: `Invalid credentials for user ${email}`,
+        })
+      }
+    } catch (error) {
+      if (error instanceof errors.E_VALIDATION_ERROR) {
+        logger.error(error)
+        return response.badRequest({
+          error: {
+            success: false,
+            message: 'Invalid credentials.',
+            error: error.message,
+            status: 400,
+          },
+        })
+      }
     }
   }
 }

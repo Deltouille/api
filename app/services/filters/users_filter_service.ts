@@ -2,7 +2,7 @@ import User from '#models/user'
 import { ModelQueryBuilderContract } from '@adonisjs/lucid/types/model'
 import { GenderEnum } from '#constants/gender_enum'
 import logger from '@adonisjs/core/services/logger'
-import { LocationService } from '#services/location_service'
+import { LocationService } from '#services/locations_service'
 import { inject } from '@adonisjs/core'
 
 @inject()

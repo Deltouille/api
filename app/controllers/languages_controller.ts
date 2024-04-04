@@ -3,7 +3,13 @@ import Language from '#models/language'
 
 export default class LanguagesController {
   async getLanguages({ response }: HttpContext) {
-    const languages: Language[] = await Language.query().orderBy('name', 'asc')
-    return response.ok(languages)
+    try {
+      const languages: Language[] = await Language.query().orderBy('name', 'asc')
+      return response.ok({ status: 200, success: true, data: languages })
+    } catch (error) {
+      if (error instanceof Error) {
+        return response.badRequest({ status: 500, success: false, error: error.message })
+      }
+    }
   }
 }

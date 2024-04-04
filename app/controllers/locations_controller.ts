@@ -21,31 +21,47 @@ export default class LocationsController {
           // Associate the location with the profile
           await user.profile.related('location').save(location)
 
-          return response.created(location)
+          return response.created({
+            status: 201,
+            success: true,
+            message: 'Your profile has been successfully created',
+          })
         } catch (error) {
-          logger.error({
-            status: 502,
-            message: error,
-          })
-          return response.badGateway({
-            status: 502,
-            message: 'Something went wrong, could not create the location resource.',
-          })
+          if (error instanceof Error) {
+            logger.error({
+              status: 502,
+              success: false,
+              message: error,
+            })
+            return response.badGateway({
+              status: 502,
+              success: false,
+              message: 'Something went wrong, could not create the location resource.',
+            })
+          }
         }
       } else {
         logger.error({
           status: 400,
+          success: false,
           message: 'Empty body',
         })
         return response.badRequest({
           status: 400,
+          success: false,
           message: 'Empty body',
         })
       }
     } else {
+      logger.info({
+        status: 401,
+        success: false,
+        message: `User ${user?.uuid} is not allowed to perform this action`,
+      })
       return response.unauthorized({
-        status: 404,
-        message: `User ${user} not found`,
+        status: 401,
+        success: false,
+        message: `You are not allowed to perform this action`,
       })
     }
   }
