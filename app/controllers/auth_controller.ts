@@ -30,46 +30,36 @@ export default class AuthController {
   }
 
   async login({ request, response, logger }: HttpContext) {
-    logger.debug({ request: request.all() })
     const { email, password } = request.only(['email', 'password'])
 
-    try {
-      const user: User | null = await User.findBy('email', email)
+    if (null !== email && null !== password) {
+      try {
+        const user: User | null = await User.findBy('email', email)
 
-      if (!user) {
-        response.abort('Invalid credentials')
-      }
+        if (!user) {
+          response.abort('Invalid credentials')
+        }
 
-      const isValidPassword = await hash.verify(user!.password, password)
-
-      if (isValidPassword) {
+        await hash.verify(user!.password, password)
         const token = await User.accessTokens.create(user!)
-        logger.debug(`User ${user!.uuid} successfully logged-in.`)
+
         return response.ok({
-          status: 200,
-          success: true,
-          message: `User ${user!.uuid} successfully logged-in.`,
           token,
-        })
-      } else {
-        return response.badRequest({
+          success: true,
           status: 200,
-          success: false,
-          message: `Invalid credentials for user ${email}`,
+          message: `User ${user!.uuid} successfully logged-in.`,
         })
-      }
-    } catch (error) {
-      if (error instanceof errors.E_VALIDATION_ERROR) {
+      } catch (error) {
         logger.error(error)
         return response.badRequest({
-          error: {
-            success: false,
-            message: 'Invalid credentials.',
-            error: error.message,
-            status: 400,
-          },
+          success: false,
+          message: 'Invalid credentials.',
+          error: error.message,
+          status: 400,
         })
       }
+    } else {
+      response.badRequest({ success: false, message: 'Invalid credentials.', status: 400 })
     }
   }
 }

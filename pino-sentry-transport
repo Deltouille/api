@@ -1,0 +1,101 @@
+{"level":30,"time":1711234836383,"pid":16728,"hostname":"Nebula","msg":"started HTTP server on 127.0.0.1:3333"}
+{"level":30,"time":1711234852586,"pid":2900,"hostname":"Nebula","msg":"started HTTP server on 127.0.0.1:3333"}
+{"level":30,"time":1711234891265,"pid":2116,"hostname":"Nebula","msg":"started HTTP server on 127.0.0.1:3333"}
+{"level":30,"time":1711234898407,"pid":6940,"hostname":"Nebula","msg":"started HTTP server on 127.0.0.1:3333"}
+{"level":30,"time":1711234904450,"pid":7972,"hostname":"Nebula","msg":"started HTTP server on 127.0.0.1:3333"}
+{"level":30,"time":1711234948488,"pid":6660,"hostname":"Nebula","msg":"started HTTP server on 127.0.0.1:3333"}
+{"level":30,"time":1711234966207,"pid":7684,"hostname":"Nebula","msg":"started HTTP server on 127.0.0.1:3333"}
+{"level":30,"time":1711234989713,"pid":5056,"hostname":"Nebula","msg":"started HTTP server on 127.0.0.1:3333"}
+{"level":30,"time":1711235022493,"pid":2648,"hostname":"Nebula","msg":"started HTTP server on 127.0.0.1:3333"}
+{"level":30,"time":1711235030472,"pid":7012,"hostname":"Nebula","msg":"started HTTP server on 127.0.0.1:3333"}
+{"level":30,"time":1711235037043,"pid":15204,"hostname":"Nebula","msg":"started HTTP server on 127.0.0.1:3333"}
+{"level":30,"time":1711235046345,"pid":19040,"hostname":"Nebula","msg":"started HTTP server on 127.0.0.1:3333"}
+{"level":30,"time":1711235073538,"pid":11364,"hostname":"Nebula","msg":"started HTTP server on 127.0.0.1:3333"}
+{"level":30,"time":1711236199827,"pid":18176,"hostname":"Nebula","msg":"started HTTP server on 127.0.0.1:3333"}
+{"level":30,"time":1711236207935,"pid":18320,"hostname":"Nebula","msg":"started HTTP server on 127.0.0.1:3333"}
+{"level":30,"time":1711236225761,"pid":2120,"hostname":"Nebula","msg":"started HTTP server on 127.0.0.1:3333"}
+{"level":30,"time":1711236247193,"pid":14416,"hostname":"Nebula","msg":"started HTTP server on 127.0.0.1:3333"}
+{"level":30,"time":1711236254525,"pid":19404,"hostname":"Nebula","msg":"started HTTP server on 127.0.0.1:3333"}
+{"level":30,"time":1711236264420,"pid":17804,"hostname":"Nebula","msg":"started HTTP server on 127.0.0.1:3333"}
+{"level":30,"time":1711236287032,"pid":4284,"hostname":"Nebula","msg":"started HTTP server on 127.0.0.1:3333"}
+{"level":30,"time":1711236311844,"pid":9728,"hostname":"Nebula","msg":"started HTTP server on 127.0.0.1:3333"}
+{"level":30,"time":1711236356872,"pid":19168,"hostname":"Nebula","msg":"started HTTP server on 127.0.0.1:3333"}
+{"level":30,"time":1711236377779,"pid":728,"hostname":"Nebula","msg":"started HTTP server on 127.0.0.1:3333"}
+{"level":30,"time":1711236400194,"pid":15208,"hostname":"Nebula","msg":"started HTTP server on 127.0.0.1:3333"}
+{"level":30,"time":1711236411391,"pid":13060,"hostname":"Nebula","msg":"started HTTP server on 127.0.0.1:3333"}
+{"level":30,"time":1711236431034,"pid":11328,"hostname":"Nebula","msg":"started HTTP server on 127.0.0.1:3333"}
+{"level":30,"time":1711236444950,"pid":19180,"hostname":"Nebula","msg":"started HTTP server on 127.0.0.1:3333"}
+{"level":30,"time":1711236469599,"pid":8224,"hostname":"Nebula","msg":"started HTTP server on 127.0.0.1:3333"}
+{"level":30,"time":1711236474975,"pid":7448,"hostname":"Nebula","msg":"started HTTP server on 127.0.0.1:3333"}
+{"level":50,"time":1711236505826,"pid":7448,"hostname":"Nebula","request_id":"o0462jobsx8ve09ddrx1nqvh","err":{"type":"Error","message":"connect ECONNREFUSED 127.0.0.1:3366","stack":"Error: connect ECONNREFUSED 127.0.0.1:3366\n    at __node_internal_captureLargerStackTrace (node:internal/errors:563:5)\n    at __node_internal_exceptionWithHostPort (node:internal/errors:738:12)\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1595:16)","errno":-4078,"code":"ECONNREFUSED","syscall":"connect","address":"127.0.0.1","port":3366,"fatal":true,"status":500},"x-request-id":"o0462jobsx8ve09ddrx1nqvh","msg":"connect ECONNREFUSED 127.0.0.1:3366"}
+{"level":50,"time":1711236508069,"pid":7448,"hostname":"Nebula","request_id":"wx3rfytonufrbo1z0d77pfiz","err":{"type":"Error","message":"connect ECONNREFUSED 127.0.0.1:3366","stack":"Error: connect ECONNREFUSED 127.0.0.1:3366\n    at __node_internal_captureLargerStackTrace (node:internal/errors:563:5)\n    at __node_internal_exceptionWithHostPort (node:internal/errors:738:12)\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1595:16)","errno":-4078,"code":"ECONNREFUSED","syscall":"connect","address":"127.0.0.1","port":3366,"fatal":true,"status":500},"x-request-id":"wx3rfytonufrbo1z0d77pfiz","msg":"connect ECONNREFUSED 127.0.0.1:3366"}
+{"level":30,"time":1711236529916,"pid":6804,"hostname":"Nebula","msg":"started HTTP server on 127.0.0.1:3333"}
+{"level":30,"time":1711236536546,"pid":1960,"hostname":"Nebula","msg":"started HTTP server on 127.0.0.1:3333"}
+{"level":30,"time":1711236554033,"pid":1960,"hostname":"Nebula","msg":"Users fetched successfully"}
+{"level":30,"time":1711236567591,"pid":14488,"hostname":"Nebula","msg":"started HTTP server on 127.0.0.1:3333"}
+{"level":30,"time":1711328303759,"pid":17804,"hostname":"Nebula","msg":"started HTTP server on 127.0.0.1:3333"}
+{"level":30,"time":1711328336679,"pid":16248,"hostname":"Nebula","msg":"started HTTP server on 127.0.0.1:3333"}
+{"level":30,"time":1711328342759,"pid":16540,"hostname":"Nebula","msg":"started HTTP server on 127.0.0.1:3333"}
+{"level":50,"time":1711328365301,"pid":16540,"hostname":"Nebula","request_id":"hbqos1k43n99eeolrbswux2h","err":{"type":"Error","message":"connect ECONNREFUSED 127.0.0.1:3366","stack":"Error: connect ECONNREFUSED 127.0.0.1:3366\n    at __node_internal_captureLargerStackTrace (node:internal/errors:563:5)\n    at __node_internal_exceptionWithHostPort (node:internal/errors:738:12)\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1595:16)","errno":-4078,"code":"ECONNREFUSED","syscall":"connect","address":"127.0.0.1","port":3366,"fatal":true,"status":500},"x-request-id":"hbqos1k43n99eeolrbswux2h","msg":"connect ECONNREFUSED 127.0.0.1:3366"}
+{"level":30,"time":1711328504161,"pid":6140,"hostname":"Nebula","msg":"started HTTP server on 127.0.0.1:3333"}
+{"level":30,"time":1711328510042,"pid":19412,"hostname":"Nebula","msg":"started HTTP server on 127.0.0.1:3333"}
+{"level":30,"time":1711328529167,"pid":15572,"hostname":"Nebula","msg":"started HTTP server on 127.0.0.1:3333"}
+{"level":30,"time":1711328545899,"pid":20348,"hostname":"Nebula","msg":"started HTTP server on 127.0.0.1:3333"}
+{"level":30,"time":1711328556764,"pid":21880,"hostname":"Nebula","msg":"started HTTP server on 127.0.0.1:3333"}
+{"level":30,"time":1711328573099,"pid":14588,"hostname":"Nebula","msg":"started HTTP server on 127.0.0.1:3333"}
+{"level":30,"time":1711328616622,"pid":9832,"hostname":"Nebula","msg":"started HTTP server on 127.0.0.1:3333"}
+{"level":30,"time":1711328642095,"pid":20024,"hostname":"Nebula","msg":"started HTTP server on 127.0.0.1:3333"}
+{"level":30,"time":1711328657121,"pid":17396,"hostname":"Nebula","msg":"started HTTP server on 127.0.0.1:3333"}
+{"level":30,"time":1711328674993,"pid":20716,"hostname":"Nebula","msg":"started HTTP server on 127.0.0.1:3333"}
+{"level":30,"time":1711328683816,"pid":20008,"hostname":"Nebula","msg":"started HTTP server on 127.0.0.1:3333"}
+{"level":30,"time":1711328697007,"pid":20916,"hostname":"Nebula","msg":"started HTTP server on 127.0.0.1:3333"}
+{"level":30,"time":1711328877196,"pid":22140,"hostname":"Nebula","msg":"started HTTP server on 127.0.0.1:3333"}
+{"level":30,"time":1711328877492,"pid":22140,"hostname":"Nebula","msg":"Deleting user b5086af9-ff2a-454c-bdc9-da754f17d5ca"}
+{"level":50,"time":1711328877729,"pid":22140,"hostname":"Nebula","request_id":"omz4y6yhq9h607og3filrshr","err":{"type":"ReferenceError","message":"user is not defined","stack":"ReferenceError: user is not defined\n    at UsersController.destroy (c:/Users/Anthony/Documents/Projects/api/app/controllers/users_controller.ts:163:28)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at SessionMiddleware.handle (C:\\Users\\Anthony\\Documents\\Projects\\api\\node_modules\\@adonisjs\\session\\src\\session_middleware.ts:81:22)","status":500},"x-request-id":"omz4y6yhq9h607og3filrshr","msg":"user is not defined"}
+{"level":30,"time":1711328910319,"pid":2660,"hostname":"Nebula","msg":"started HTTP server on 127.0.0.1:3333"}
+{"level":30,"time":1711328911645,"pid":2660,"hostname":"Nebula","msg":"Deleting user b5086af9-ff2a-454c-bdc9-da754f17d5ca"}
+{"level":30,"time":1711328949323,"pid":20044,"hostname":"Nebula","msg":"started HTTP server on 127.0.0.1:3333"}
+{"level":30,"time":1711328968798,"pid":20420,"hostname":"Nebula","msg":"started HTTP server on 127.0.0.1:3333"}
+{"level":30,"time":1711329081447,"pid":18800,"hostname":"Nebula","msg":"started HTTP server on 127.0.0.1:3333"}
+{"level":30,"time":1711329125783,"pid":20488,"hostname":"Nebula","msg":"started HTTP server on 127.0.0.1:3333"}
+{"level":30,"time":1711329279615,"pid":19012,"hostname":"Nebula","msg":"started HTTP server on 127.0.0.1:3333"}
+{"level":30,"time":1711331662826,"pid":8148,"hostname":"Nebula","msg":"started HTTP server on 127.0.0.1:3333"}
+{"level":30,"time":1711331671117,"pid":21636,"hostname":"Nebula","msg":"started HTTP server on 127.0.0.1:3333"}
+{"level":30,"time":1711331675825,"pid":18768,"hostname":"Nebula","msg":"started HTTP server on 127.0.0.1:3333"}
+{"level":30,"time":1711331695900,"pid":18812,"hostname":"Nebula","msg":"started HTTP server on 127.0.0.1:3333"}
+{"level":30,"time":1711331701875,"pid":20348,"hostname":"Nebula","msg":"started HTTP server on 127.0.0.1:3333"}
+{"level":30,"time":1711331726154,"pid":9624,"hostname":"Nebula","msg":"started HTTP server on 127.0.0.1:3333"}
+{"level":30,"time":1711331755567,"pid":19048,"hostname":"Nebula","msg":"started HTTP server on 127.0.0.1:3333"}
+{"level":30,"time":1711331778737,"pid":20172,"hostname":"Nebula","msg":"started HTTP server on 127.0.0.1:3333"}
+{"level":30,"time":1711331782823,"pid":16832,"hostname":"Nebula","msg":"started HTTP server on 127.0.0.1:3333"}
+{"level":30,"time":1711331788350,"pid":1564,"hostname":"Nebula","msg":"started HTTP server on 127.0.0.1:3333"}
+{"level":30,"time":1711331809552,"pid":20644,"hostname":"Nebula","msg":"started HTTP server on 127.0.0.1:3333"}
+{"level":30,"time":1711331817230,"pid":22060,"hostname":"Nebula","msg":"started HTTP server on 127.0.0.1:3333"}
+{"level":30,"time":1711331825105,"pid":22160,"hostname":"Nebula","msg":"started HTTP server on 127.0.0.1:3333"}
+{"level":30,"time":1711331838693,"pid":1704,"hostname":"Nebula","msg":"started HTTP server on 127.0.0.1:3333"}
+{"level":30,"time":1711331853855,"pid":4980,"hostname":"Nebula","msg":"started HTTP server on 127.0.0.1:3333"}
+{"level":30,"time":1711331867904,"pid":19804,"hostname":"Nebula","msg":"started HTTP server on 127.0.0.1:3333"}
+{"level":30,"time":1711331880502,"pid":14844,"hostname":"Nebula","msg":"started HTTP server on 127.0.0.1:3333"}
+{"level":30,"time":1711331909907,"pid":8608,"hostname":"Nebula","msg":"started HTTP server on 127.0.0.1:3333"}
+{"level":30,"time":1711331918525,"pid":20532,"hostname":"Nebula","msg":"started HTTP server on 127.0.0.1:3333"}
+{"level":30,"time":1711333216918,"pid":15632,"hostname":"Nebula","msg":"started HTTP server on 127.0.0.1:3333"}
+{"level":30,"time":1711386626600,"pid":11752,"hostname":"Nebula","msg":"started HTTP server on 127.0.0.1:3333"}
+{"level":50,"time":1711386637747,"pid":11752,"hostname":"Nebula","request_id":"e4wwzjx57t6ytwubyhrfjc2b","err":{"type":"Error","message":"connect ECONNREFUSED 127.0.0.1:3366","stack":"Error: connect ECONNREFUSED 127.0.0.1:3366\n    at __node_internal_captureLargerStackTrace (node:internal/errors:563:5)\n    at __node_internal_exceptionWithHostPort (node:internal/errors:738:12)\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1595:16)","errno":-4078,"code":"ECONNREFUSED","syscall":"connect","address":"127.0.0.1","port":3366,"fatal":true,"status":500},"x-request-id":"e4wwzjx57t6ytwubyhrfjc2b","msg":"connect ECONNREFUSED 127.0.0.1:3366"}
+{"level":50,"time":1711386877635,"pid":11752,"hostname":"Nebula","request_id":"opy7cyg9k4zj2kao87ezznka","err":{"type":"Error","message":"Connection lost: The server closed the connection.","stack":"Error: Connection lost: The server closed the connection.\n    at Socket.<anonymous> (C:\\Users\\Anthony\\Documents\\Projects\\api\\node_modules\\mysql2\\lib\\connection.js:117:31)\n    at Socket.emit (node:events:518:28)\n    at TCP.<anonymous> (node:net:337:12)","fatal":true,"code":"PROTOCOL_CONNECTION_LOST","status":500},"x-request-id":"opy7cyg9k4zj2kao87ezznka","msg":"Connection lost: The server closed the connection."}
+{"level":30,"time":1711386960213,"pid":3692,"hostname":"Nebula","msg":"started HTTP server on 127.0.0.1:3333"}
+{"level":30,"time":1711386967563,"pid":16072,"hostname":"Nebula","msg":"started HTTP server on 127.0.0.1:3333"}
+{"level":30,"time":1711386992170,"pid":16380,"hostname":"Nebula","msg":"started HTTP server on 127.0.0.1:3333"}
+{"level":30,"time":1711387011353,"pid":3528,"hostname":"Nebula","msg":"started HTTP server on 127.0.0.1:3333"}
+{"level":30,"time":1711387024093,"pid":17332,"hostname":"Nebula","msg":"started HTTP server on 127.0.0.1:3333"}
+{"level":30,"time":1711388306264,"pid":15648,"hostname":"Nebula","msg":"started HTTP server on 127.0.0.1:3333"}
+{"level":30,"time":1711388333026,"pid":8484,"hostname":"Nebula","msg":"started HTTP server on 127.0.0.1:3333"}
+{"level":30,"time":1712860318518,"pid":5208,"hostname":"Nebula","msg":"started HTTP server on 127.0.0.1:3333"}
+{"level":30,"time":1712860431487,"pid":4408,"hostname":"Nebula","msg":"started HTTP server on 127.0.0.1:3333"}
+{"level":30,"time":1712860433267,"pid":4408,"hostname":"Nebula","request_id":"sozi699o0zbsq1kt6szx7eoa","email":"selenuix.temp@gmail.com","password":null}
+{"level":30,"time":1712860455863,"pid":4672,"hostname":"Nebula","msg":"started HTTP server on 127.0.0.1:3333"}
+{"level":30,"time":1712860468171,"pid":15268,"hostname":"Nebula","msg":"started HTTP server on 127.0.0.1:3333"}
+{"level":30,"time":1712860478993,"pid":17872,"hostname":"Nebula","msg":"started HTTP server on 127.0.0.1:3333"}
+{"level":30,"time":1712860489193,"pid":13484,"hostname":"Nebula","msg":"started HTTP server on 127.0.0.1:3333"}
+{"level":30,"time":1712860504842,"pid":14304,"hostname":"Nebula","msg":"started HTTP server on 127.0.0.1:3333"}
+{"level":30,"time":1712860605321,"pid":5512,"hostname":"Nebula","msg":"started HTTP server on 127.0.0.1:3333"}
+{"level":30,"time":1712860770310,"pid":12696,"hostname":"Nebula","msg":"started HTTP server on 127.0.0.1:3333"}
