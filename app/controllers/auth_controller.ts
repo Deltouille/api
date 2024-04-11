@@ -12,10 +12,10 @@ export default class AuthController {
       const user: User = await User.create(payload)
 
       return response.created({
-        user: user,
         success: true,
         status: 201,
         message: `User ${user.uuid} created successfully.`,
+        data: user,
       })
     } catch (error) {
       if (error instanceof errors.E_VALIDATION_ERROR) {
@@ -37,29 +37,29 @@ export default class AuthController {
         const user: User | null = await User.findBy('email', email)
 
         if (!user) {
-          response.abort('Invalid credentials')
+          response.notFound({ success: false, status: 404, message: 'Invalid credentials' })
         }
 
         await hash.verify(user!.password, password)
         const token = await User.accessTokens.create(user!)
 
         return response.ok({
-          token,
           success: true,
           status: 200,
+          data: token,
           message: `User ${user!.uuid} successfully logged-in.`,
         })
       } catch (error) {
         logger.error(error)
         return response.badRequest({
           success: false,
+          status: 400,
           message: 'Invalid credentials.',
           error: error.message,
-          status: 400,
         })
       }
     } else {
-      response.badRequest({ success: false, message: 'Invalid credentials.', status: 400 })
+      response.badRequest({ success: false, status: 400, message: 'Invalid credentials.' })
     }
   }
 }

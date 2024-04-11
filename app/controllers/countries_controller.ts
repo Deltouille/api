@@ -9,7 +9,7 @@ export default class CountriesController {
   async getCountries({ logger, response }: HttpContext) {
     try {
       const countries = await this.countryService.getCountries()
-      return response.ok({ status: 200, success: true, data: countries })
+      return response.ok({ status: 200, success: true, data: Object.values(countries) })
     } catch (error) {
       if (error instanceof Error) {
         logger.error('Error fetching countries:', error.message)

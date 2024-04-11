@@ -13,7 +13,7 @@ export class CountryService {
     }
   }
 
-  async sortAlphabetically(data: any[]) {
+  sortAlphabetically(data: any[]) {
     const countrySet: Set<string> = new Set<string>()
 
     data.forEach((countries): void => {
@@ -25,6 +25,6 @@ export class CountryService {
     })
 
     // Convert the set to an array and sort alphabetically
-    return { countries: Array.from(countrySet).sort() }
+    return [...countrySet].sort()
   }
 }
