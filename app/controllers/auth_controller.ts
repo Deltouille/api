@@ -25,6 +25,14 @@ export default class AuthController {
           success: false,
           errors: error.messages,
         })
+      } else {
+        logger.error(error)
+        return response.internalServerError({
+          status: 500,
+          success: false,
+          message: 'Internal server error.',
+          error: error.message,
+        })
       }
     }
   }

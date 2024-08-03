@@ -2,9 +2,9 @@
 node_modules
 build
 tmp
-logs/**
 
 # Secrets
+.env
 .env.local
 .env.production.local
 .env.development.local

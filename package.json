@@ -1,13 +1,13 @@
 {
-  "name": "api",
-  "version": "1.1.0-alpha.1",
+  "name": "api-adonis-v6",
+  "version": "0.0.0",
   "private": true,
   "type": "module",
-  "license": "MIT",
+  "license": "UNLICENSED",
   "scripts": {
     "start": "node bin/server.js",
     "build": "node ace build",
-    "dev": "node ace serve --watch",
+    "dev": "node ace serve --hmr",
     "test": "node ace test",
     "lint": "eslint .",
     "format": "prettier --write .",
@@ -33,38 +33,41 @@
     "#config/*": "./config/*.js"
   },
   "devDependencies": {
-    "@adonisjs/assembler": "^7.1.1",
-    "@adonisjs/eslint-config": "^1.2.1",
-    "@adonisjs/prettier-config": "^1.2.1",
-    "@adonisjs/tsconfig": "^1.2.1",
-    "@japa/api-client": "^2.0.2",
-    "@japa/assert": "^2.1.0",
-    "@japa/plugin-adonisjs": "^3.0.0",
-    "@japa/runner": "^3.1.1",
-    "@swc/core": "^1.3.107",
+    "@adonisjs/assembler": "^7.7.0",
+    "@adonisjs/eslint-config": "^1.3.0",
+    "@adonisjs/prettier-config": "^1.3.0",
+    "@adonisjs/tsconfig": "^1.3.0",
+    "@japa/api-client": "^2.0.3",
+    "@japa/assert": "^3.0.0",
+    "@japa/plugin-adonisjs": "^3.0.1",
+    "@japa/runner": "^3.1.4",
+    "@swc/core": "^1.6.5",
     "@types/luxon": "^3.4.2",
-    "@types/node": "^20.11.10",
-    "adonis-sail": "^1.0.0",
-    "eslint": "^8.56.0",
-    "pino-pretty": "^10.3.1",
-    "prettier": "^3.2.4",
+    "@types/node": "^20.14.9",
+    "@types/uuid": "^10.0.0",
+    "eslint": "^8.57.0",
+    "hot-hook": "^0.2.6",
+    "pino-pretty": "^11.2.1",
+    "prettier": "^3.3.2",
     "ts-node": "^10.9.2",
-    "typescript": "^5.3.3"
+    "typescript": "~5.4"
   },
   "dependencies": {
-    "@adonisjs/auth": "^9.1.1",
-    "@adonisjs/core": "^6.2.2",
+    "@adonisjs/auth": "^9.2.3",
+    "@adonisjs/core": "^6.12.1",
     "@adonisjs/cors": "^2.2.1",
-    "@adonisjs/lucid": "^20.1.0",
-    "@adonisjs/session": "^7.1.1",
-    "@sentry/node": "^7.108.0",
-    "@vinejs/vine": "^1.7.1",
+    "@adonisjs/lucid": "^21.1.0",
+    "@vinejs/vine": "^2.1.0",
     "luxon": "^3.4.4",
-    "minio": "^7.1.3",
-    "mysql2": "^3.9.1",
-    "pino-sentry-transport": "^1.1.0",
-    "reflect-metadata": "^0.2.1",
-    "uuid": "^9.0.1"
+    "mysql2": "^3.11.0",
+    "reflect-metadata": "^0.2.2",
+    "uuid": "^10.0.0"
+  },
+  "hotHook": {
+    "boundaries": [
+      "./app/controllers/**/*.ts",
+      "./app/middleware/*.ts"
+    ]
   },
   "eslintConfig": {
     "extends": "@adonisjs/eslint-config/app"

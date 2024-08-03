@@ -5,12 +5,12 @@ services:
     image: mariadb:latest
     container_name: lingolink-api-database
     environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: lingolink
-      MYSQL_USER: lingolink
-      MYSQL_PASSWORD: lingolink
+      MARIADB_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_DATABASE: ${DB_DATABASE}
     ports:
-      - '3366:3306'
+      - '${DB_PORT}:${DB_PORT}'
     volumes:
       - data:/var/lib/mysql
 
